@@ -1,10 +1,11 @@
-package com.mertadali.country_api_app
+package com.mertadali.country_api_app.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.mertadali.country_api_app.R
 
 
 class FeedScreenFragment : Fragment() {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/feedScreenFragment"
-        android:name="com.mertadali.country_api_app.FeedScreenFragment"
+        android:name="com.mertadali.country_api_app.view.FeedScreenFragment"
         android:label="fragment_feed_screen"
         tools:layout="@layout/fragment_feed_screen" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/countryDeatilFragment"
-        android:name="com.mertadali.country_api_app.CountryDeatilFragment"
+        android:name="com.mertadali.country_api_app.view.CountryDeatilFragment"
         android:label="fragment_country_deatil"
         tools:layout="@layout/fragment_country_deatil" >
         <action
