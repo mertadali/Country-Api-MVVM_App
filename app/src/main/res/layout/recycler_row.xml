@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -10,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:src="@drawable/ic_launcher_background"
@@ -18,10 +16,11 @@
     </ImageView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="3"
+        android:gravity="center_vertical"
         >
 
 
@@ -30,7 +29,7 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Country Name: "
+        android:text="@string/country_name"
         android:textSize="18sp"
         android:textStyle="bold"
         android:padding="5dp"
@@ -44,7 +43,7 @@
         android:id="@+id/region"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Country Region: "
+        android:text="@string/country_region"
         android:textSize="16sp"
         android:layout_marginTop="15dp"
         android:padding="5dp"
@@ -56,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="more info"
+            android:text="@string/more_info"
             android:layout_gravity="end"
             android:padding="3sp"
             android:layout_marginTop="40sp"

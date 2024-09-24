@@ -7,11 +7,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mertadali.country_api_app.databinding.RecyclerRowBinding
 import com.mertadali.country_api_app.model.Country
-import com.mertadali.country_api_app.view.FeedScreenFragment
 import com.mertadali.country_api_app.view.FeedScreenFragmentDirections
 
 
-class CountryAdapter(val countryList : ArrayList<Country>) : RecyclerView.Adapter<CountryAdapter.RowHolder>() {
+class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerView.Adapter<CountryAdapter.RowHolder>() {
     class RowHolder(val binding : RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root){
 
     }
@@ -34,15 +33,15 @@ class CountryAdapter(val countryList : ArrayList<Country>) : RecyclerView.Adapte
             Navigation.findNavController(it).navigate(action)
         }
 
-        // RefresherLayout kullandığımız için
 
-        @SuppressLint("NotifyDataSetChanged")
-        fun updateCountryList(newCountryList : List<Country>){
-            countryList.clear()
-            countryList.addAll(newCountryList)                 // newCountryList'e eklenen yeni elemanlar countryList'e eklenir.
-            notifyDataSetChanged()
+    }
+    // RefresherLayout kullandığımız için
 
-        }
+    fun updateCountryList(newCountryList : List<Country>){
+        countryList.clear()
+        countryList.addAll(newCountryList)                 // newCountryList'e eklenen yeni elemanlar countryList'e eklenir.
+        notifyDataSetChanged()
+
     }
 
 }

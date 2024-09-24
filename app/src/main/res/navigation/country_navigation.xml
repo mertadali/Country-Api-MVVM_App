@@ -22,5 +22,8 @@
         <action
             android:id="@+id/action_countryDeatilFragment_to_feedScreenFragment"
             app:destination="@id/feedScreenFragment" />
+        <argument android:name="countryUuid"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>
