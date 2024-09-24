@@ -45,6 +45,18 @@ class FeedScreenFragment : Fragment() {
         binding.countryListRecycler.layoutManager = LinearLayoutManager(context) //-> Vertical göstereceğimiz için horizontal olsaydı gridLayout olurdu.
         binding.countryListRecycler.adapter = countryAdapter
 
+
+        binding.refresh.setOnRefreshListener {
+            binding.countryListRecycler.visibility = View.GONE
+            binding.errorMessage.visibility = View.GONE
+            binding.countryLoading.visibility = View.VISIBLE
+
+            viewModel.refreshData()
+            binding.refresh.isRefreshing = false
+        }
+
+
+
         observeLiveData()
 
 

@@ -1,12 +1,21 @@
 package com.mertadali.country_api_app.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Country(
+    @SerializedName("name")
     val countryName : String?,
+    @SerializedName("capital")
     val countryCapital : String?,
+    @SerializedName("region")
     val countryRegion : String?,
+    @SerializedName("currency")
     val countryCurrency : String?,
-    val countryLanguage : String?,
-    val countryFlagUrl : String?
+    @SerializedName("flag")
+    val countryFlagUrl : String?,
+    @SerializedName("language")
+    val countryLanguage : String?
+
 ){
 
 }

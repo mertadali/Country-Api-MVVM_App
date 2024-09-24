@@ -77,7 +77,7 @@ dependencies {
     val retrofitVersion = "2.11.0"
     implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-    implementation ("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
+    implementation ("com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion")
 
     // RxJava
     val rxJavaVersion = "3.1.9"
