@@ -7,6 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mertadali.country_api_app.databinding.RecyclerRowBinding
 import com.mertadali.country_api_app.model.Country
+import com.mertadali.country_api_app.util.downloadFromUrl
+import com.mertadali.country_api_app.util.placeHolderProgressBar
 import com.mertadali.country_api_app.view.FeedScreenFragmentDirections
 
 
@@ -32,6 +34,10 @@ class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerVie
             val action = FeedScreenFragmentDirections.actionFeedScreenFragmentToCountryDeatilFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+        holder.binding.imageView.downloadFromUrl(countryList[position].countryFlagUrl,
+            placeHolderProgressBar(holder.itemView.context)
+        )
 
 
     }
