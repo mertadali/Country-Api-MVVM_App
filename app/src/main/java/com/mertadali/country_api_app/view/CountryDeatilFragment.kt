@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.mertadali.country_api_app.R
 import com.mertadali.country_api_app.databinding.FragmentCountryDeatilBinding
-import com.mertadali.country_api_app.databinding.FragmentFeedScreenBinding
 import com.mertadali.country_api_app.view_model.DetailViewModel
 
 

@@ -7,28 +7,23 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mertadali.country_api_app.R
 
-/* Extension hazır olan yapılara kendi extensionlarımızı yazmaya yarar.
+/*
 
 fun String.myExtension(myParamater : String){
     println(myParamater)
 }
 */
 
-
-// Glide resimleri asyc çekmemize olanak sağlayan kütüphane --- Place Holder görünümler inene kadar ne göstereceğimizi ayarlar.
-
-
+// Extension hazır olan yapılara kendi extensionlarımızı yazmaya yarar.
 
 fun ImageView.downloadFromUrl(url  : String?, progressDrawable: CircularProgressDrawable){
 
     val options = RequestOptions()
-        .placeholder(progressDrawable)
+        .placeholder(progressDrawable)                    // ->  Place Holder görünümler inene kadar ne göstereceğimizi ayarlar.
         .error(R.mipmap.ic_launcher_round)
 
 
-
-
-    Glide.with(context)
+    Glide.with(context)                                  // -> Glide resimleri asyc çekmemize olanak sağlayan kütüphane
         .setDefaultRequestOptions(options)
         .load(url)
         .into(this)
