@@ -2,7 +2,6 @@ package com.mertadali.country_api_app.service
 
 import com.mertadali.country_api_app.model.Country
 import io.reactivex.rxjava3.core.Single
-import retrofit2.Call
 import retrofit2.http.GET
 
 interface CountryAPI {

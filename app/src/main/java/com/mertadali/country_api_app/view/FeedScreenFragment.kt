@@ -50,7 +50,7 @@ class FeedScreenFragment : Fragment() {
             binding.errorMessage.visibility = View.GONE
             binding.countryLoading.visibility = View.VISIBLE
 
-            viewModel.refreshData()
+            viewModel.refreshFromAPI()
             binding.refresh.isRefreshing = false
         }
 

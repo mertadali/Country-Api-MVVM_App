@@ -1,11 +1,12 @@
 package com.mertadali.country_api_app.view_model
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.mertadali.country_api_app.model.Country
 import com.mertadali.country_api_app.service.CountryAPIService
 import com.mertadali.country_api_app.service.CountryDatabase
+import com.mertadali.country_api_app.util.CustomSharedPreferences
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
@@ -22,10 +23,33 @@ class FeedViewModel(application: Application) : BaseViewModel(application){
     val countryError = MutableLiveData<Boolean>()
     val countryLoading = MutableLiveData<Boolean>()
 
+    private val refreshTime = 10 * 60 * 1000 * 1000 * 1000L
+
+    private var customPreferences = CustomSharedPreferences(getApplication())
+
    fun refreshData(){
-       getDataFromAPI()
+       val updateTime = customPreferences.getTime()
+       if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime ){
+           getDataFromSqLite()
+       }else{
+           getDataFromAPI()
+       }
 
    }
+
+    private fun getDataFromSqLite(){
+        countryLoading.value = true
+        launch {
+            var counties = CountryDatabase(getApplication()).CountryDao().getAllCountries()
+            whenOnSuccesss(counties)
+            Toast.makeText(getApplication(),"Countries from SQLite",Toast.LENGTH_LONG).show()
+        }
+
+    }
+
+    fun refreshFromAPI(){
+        getDataFromAPI()
+    }
 
     private fun getDataFromAPI(){
        countryLoading.value = true
@@ -35,6 +59,7 @@ class FeedViewModel(application: Application) : BaseViewModel(application){
             .subscribeWith(object : DisposableSingleObserver<List<Country>>(){
                 override fun onSuccess(t: List<Country>) {
                     storeInSQLite(t)
+                    Toast.makeText(getApplication(),"Countries from API",Toast.LENGTH_LONG).show()
 
                 }
 
@@ -64,10 +89,12 @@ class FeedViewModel(application: Application) : BaseViewModel(application){
            var i = 0
            while (i < list.size){
                list[i].uuid = listLong[i].toInt()
-               i = i +1
+               i += 1
            }
            whenOnSuccesss(list)
        }
+
+       customPreferences.saveTime(System.nanoTime())
    }
 
 

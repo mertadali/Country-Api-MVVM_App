@@ -40,6 +40,8 @@ class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerVie
         )
 
 
+
+
     }
     // RefresherLayout kullandığımız için
 
