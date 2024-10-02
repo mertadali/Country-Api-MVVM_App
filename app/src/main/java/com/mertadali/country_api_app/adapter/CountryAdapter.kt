@@ -31,7 +31,8 @@ class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerVie
         holder.binding.region.text = countryList[position].countryRegion
 
         holder.itemView.setOnClickListener {
-            val action = FeedScreenFragmentDirections.actionFeedScreenFragmentToCountryDeatilFragment()
+            val action = FeedScreenFragmentDirections.actionFeedScreenFragmentToCountryDeatilFragment(countryList[position].uuid)
+
             Navigation.findNavController(it).navigate(action)
         }
 
