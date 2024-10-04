@@ -2,6 +2,7 @@ package com.mertadali.country_api_app.util
 
 import android.content.Context
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -39,5 +40,10 @@ fun placeHolderProgressBar(context : Context) : CircularProgressDrawable{
         start()
 
     }
+}
+@BindingAdapter("android:downloadImageFromXML")
+fun downloadImageFromXML(binding : ImageView, url: String?){
+    binding.downloadFromUrl(url, placeHolderProgressBar(binding.context))
+
 }
 

@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id ("androidx.navigation.safeargs.kotlin")
-    id ("com.google.devtools.ksp")
+    id ("kotlin-kapt")
+
 
 }
 
@@ -66,7 +67,9 @@ dependencies {
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
+  //  ksp("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+
 
     // Coroutines
     implementation("androidx.room:room-ktx:$roomVersion")

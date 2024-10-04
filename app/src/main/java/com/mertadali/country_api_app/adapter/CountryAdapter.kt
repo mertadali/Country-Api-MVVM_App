@@ -1,10 +1,13 @@
 package com.mertadali.country_api_app.adapter
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.mertadali.country_api_app.R
 import com.mertadali.country_api_app.databinding.RecyclerRowBinding
 import com.mertadali.country_api_app.model.Country
 import com.mertadali.country_api_app.util.downloadFromUrl
@@ -18,7 +21,8 @@ class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowHolder {
-        val binding = RecyclerRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = DataBindingUtil.inflate<RecyclerRowBinding>(inflater, R.layout.recycler_row,parent,false)
         return RowHolder(binding)
     }
 
@@ -27,25 +31,28 @@ class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: RowHolder, position: Int) {
-        holder.binding.name.text = countryList[position].countryName
-        holder.binding.region.text = countryList[position].countryRegion
+        holder.binding.country = countryList[position]
 
-        holder.itemView.setOnClickListener {
+
+        // ----- !!!! DATA BINDING KULLANDIGIMIZ ICIN BU KODLARA IHTIYAC YOK !!!! -----
+
+
+        /*holder.itemView.setOnClickListener {
             val action = FeedScreenFragmentDirections.actionFeedScreenFragmentToCountryDeatilFragment(countryList[position].uuid)
-
             Navigation.findNavController(it).navigate(action)
         }
 
         holder.binding.imageView.downloadFromUrl(countryList[position].countryFlagUrl,
             placeHolderProgressBar(holder.itemView.context)
         )
-
+*/
 
 
 
     }
     // RefresherLayout kullandığımız için
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateCountryList(newCountryList : List<Country>){
         countryList.clear()
         countryList.addAll(newCountryList)                 // newCountryList'e eklenen yeni elemanlar countryList'e eklenir.
