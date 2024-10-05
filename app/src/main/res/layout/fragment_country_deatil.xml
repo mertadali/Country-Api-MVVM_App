@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="selectedCountry"
+            type="com.mertadali.country_api_app.model.Country" />
+    </data>
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,9 +19,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
+        android:downloadImageFromXML="@{selectedCountry.countryFlagUrl}"
         android:minHeight="200dp"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_launcher_background"
+
        >
 
     </ImageView>
@@ -28,7 +35,7 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:text="Country Name: "
+        android:text="@{selectedCountry.countryName}"
         android:layout_marginTop="15sp"
         android:padding="5dp"
         android:layout_centerHorizontal="true"
@@ -45,7 +52,7 @@
 
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:text="Country Capital: "
+       android:text="@{selectedCountry.countryCapital}"
         android:layout_marginTop="15sp"
         android:padding="5dp"
 
@@ -62,7 +69,7 @@
 
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:text="Country Region: "
+        android:text="@{selectedCountry.countryRegion}"
         android:layout_marginTop="15sp"
         android:padding="5dp"
 
@@ -80,7 +87,7 @@
 
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:text="Country Currency: "
+        android:text="@{selectedCountry.countryCurrency}"
         android:layout_marginTop="15sp"
         android:padding="5dp"
 
@@ -98,7 +105,7 @@
 
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:text="Country Language: "
+        android:text="@{selectedCountry.countryLanguage}"
         android:layout_marginTop="15sp"
         android:padding="3dp"
 

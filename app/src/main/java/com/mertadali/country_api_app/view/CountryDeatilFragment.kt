@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.mertadali.country_api_app.R
 import com.mertadali.country_api_app.databinding.FragmentCountryDeatilBinding
 import com.mertadali.country_api_app.util.downloadFromUrl
 import com.mertadali.country_api_app.util.placeHolderProgressBar
@@ -16,8 +18,7 @@ import com.mertadali.country_api_app.view_model.DetailViewModel
 class CountryDeatilFragment : Fragment() {
 
     private  var countryUuid = 0
-    private var _binding: FragmentCountryDeatilBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var dataBinding: FragmentCountryDeatilBinding
     private lateinit var viewModel : DetailViewModel
 
 
@@ -31,9 +32,8 @@ class CountryDeatilFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentCountryDeatilBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_country_deatil,container,false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,6 +54,10 @@ class CountryDeatilFragment : Fragment() {
     private fun observeLiveData(){
         viewModel.countriesDetail.observe(viewLifecycleOwner, Observer { country ->
             country.let {
+
+                dataBinding.selectedCountry = country
+
+             /*
                 binding.countryName.text = country.countryName
                 binding.countryCapital.text = country.countryCapital
                 binding.countryRegion.text = country.countryRegion
@@ -65,6 +69,8 @@ class CountryDeatilFragment : Fragment() {
                         placeHolderProgressBar(it)
                     )
                 }
+
+                */
 
 
             }

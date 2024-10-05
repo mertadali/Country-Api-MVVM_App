@@ -3,19 +3,20 @@ package com.mertadali.country_api_app.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.TextureView
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mertadali.country_api_app.R
 import com.mertadali.country_api_app.databinding.RecyclerRowBinding
 import com.mertadali.country_api_app.model.Country
-import com.mertadali.country_api_app.util.downloadFromUrl
-import com.mertadali.country_api_app.util.placeHolderProgressBar
 import com.mertadali.country_api_app.view.FeedScreenFragmentDirections
 
 
-class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerView.Adapter<CountryAdapter.RowHolder>() {
+class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerView.Adapter<CountryAdapter.RowHolder>(), CountryClickedListener {
     class RowHolder(val binding : RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root){
 
     }
@@ -32,6 +33,8 @@ class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerVie
 
     override fun onBindViewHolder(holder: RowHolder, position: Int) {
         holder.binding.country = countryList[position]
+
+        holder.binding.listener = this
 
 
         // ----- !!!! DATA BINDING KULLANDIGIMIZ ICIN BU KODLARA IHTIYAC YOK !!!! -----
@@ -59,6 +62,16 @@ class CountryAdapter(private val countryList : ArrayList<Country>) : RecyclerVie
         notifyDataSetChanged()
 
     }
+
+    override fun onCountryClicked(view: View) {
+
+        val uuid = view.findViewById<TextView>(R.id.uuidTest).text.toString()
+
+        val action = FeedScreenFragmentDirections.actionFeedScreenFragmentToCountryDeatilFragment(uuid.toInt())
+        Navigation.findNavController(view).navigate(action)
+
+    }
+
 
 }
 
